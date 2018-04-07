@@ -1,0 +1,21 @@
+@import '~@angular/material/theming';
+
+.task-graph-header {
+  display: inline-flex;
+  flex-direction: row;
+
+  .task-graph-header-menu-btn {
+    color: mat_get($foreground);
+    background-color: mat_get($background);
+
+    &.active {
+      color: mat_get($background);
+      background-color: mat_get($foreground);
+    }
+  }
+
+  .task-graph-header-title {
+    flex-grow: 1;
+    text-align: center;
+  }
+}
