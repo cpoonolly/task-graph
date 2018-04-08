@@ -1,9 +1,10 @@
 export class Task {
+  taskId: number;
   taskName: string;
   taskDescription: string;
 
-  constructor(name: string, description: string) {
+  constructor(id: number, name: string) {
+    this.taskId = id;
     this.taskName = name;
-    this.taskDescription = description;
   }
 }

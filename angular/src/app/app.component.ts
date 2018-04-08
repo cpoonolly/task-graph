@@ -11,6 +11,6 @@ export class AppComponent {
 
   constructor() { }
   ngOnInit() {
-    this.task = new Task('My Task', 'My Tasks Description');
+    this.task = new Task(1, 'My Task');
   }
 }
