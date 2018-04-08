@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Task } from './task.model';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  
+  task: Task;
+
+  constructor() { }
+  ngOnInit() {
+    this.task = new Task('My Task', 'My Tasks Description');
+  }
 }

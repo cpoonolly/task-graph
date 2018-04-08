@@ -17,13 +17,17 @@ import { AppComponent } from './app.component';
 import { TaskGraphToolbarComponent } from './task-graph-toolbar/task-graph-toolbar.component';
 import { TaskGraphSideNavComponent } from './task-graph-side-nav/task-graph-side-nav.component';
 import { TaskBobbleComponent } from './task-bobble/task-bobble.component';
+import { TaskViewComponent } from './task-view/task-view.component';
+import { TaskDetailsComponent } from './task-details/task-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskGraphToolbarComponent,
     TaskGraphSideNavComponent,
-    TaskBobbleComponent
+    TaskBobbleComponent,
+    TaskViewComponent,
+    TaskDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,16 @@
+.task-view {
+  display: flex;
+
+  .task-view-panel {
+    padding: 20px;
+    min-height: calc(100vh);
+  }
+
+  .task-view-primary-panel {
+    flex-basis: 500px;
+  }
+
+  .task-view-secondary-panel {
+    flex-grow: 1;
+  }
+}
