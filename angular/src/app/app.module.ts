@@ -12,6 +12,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MarkdownModule } from 'ngx-md';
 
 import { AppComponent } from './app.component';
 import { TaskGraphToolbarComponent } from './task-graph-toolbar/task-graph-toolbar.component';
@@ -32,6 +34,8 @@ import { TaskDetailsComponent } from './task-details/task-details.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatButtonModule,
     MatButtonToggleModule,
     MatCardModule,
@@ -42,7 +46,8 @@ import { TaskDetailsComponent } from './task-details/task-details.component';
     MatInputModule,
     MatListModule,
     MatToolbarModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MarkdownModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
