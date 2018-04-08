@@ -17,4 +17,16 @@
     position: relative;
     top: 5px;
   }
+
+  .task-list-item {
+    display: flex;
+  }
+
+  .task-list-item-bobble {
+    margin-right: 5px;
+  }
+
+  .task-list-item-name {
+    margin-top: 5px;
+  }
 }

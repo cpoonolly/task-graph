@@ -1,14 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-class Task {
-  taskName: string;
-  taskDescription: string;
-
-  constructor(name: string, description: string) {
-    this.taskName = name;
-    this.taskDescription = description;
-  }
-}
+import { Task } from '../task.model';
 
 @Component({
   selector: 'task-graph-side-nav',

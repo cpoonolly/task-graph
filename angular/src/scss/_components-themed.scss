@@ -1,6 +1,8 @@
 @import '~@angular/material/theming';
 @import 'app/task-graph-toolbar/task-graph-toolbar-theme';
+@import 'app/task-bobble/task-bobble-theme';
 
 @mixin components-themed($theme) {
   @include toolbar-graph-toolbar($theme);
+  @include task-bobble-toolbar($theme);
 }

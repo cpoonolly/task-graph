@@ -1,0 +1,19 @@
+.task-bobble {
+  $task-bobble-radius: 28px;
+  $task-bobble-letter-font-size: 18px;
+  $task-bobble-letter-padding: ($task-bobble-radius - $task-bobble-letter-font-size) / 2;
+
+  height: $task-bobble-radius;
+  width: $task-bobble-radius;
+  border-radius: 50%;
+  position: relative;
+
+  .task-bobble-letter {
+    font-size: $task-bobble-letter-font-size;
+    position: absolute;
+    top: $task-bobble-letter-padding;
+    width: 100%;
+    text-align: center;
+    color: white;
+  }
+}

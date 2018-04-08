@@ -1,0 +1,25 @@
+@import '~@angular/material/theming';
+
+@mixin task-bobble-toolbar($theme) {
+  $theme-palette: map-get($theme, primary);
+  $theme-color-1: mat-color($theme-palette, 500);
+  $theme-color-2: mat-color($theme-palette, 700);
+  $theme-color-3: mat-color($theme-palette, A400);
+  $theme-color-4: mat-color($theme-palette, A700);
+
+  .task-bobble-color-1 {
+    background-color: $theme-color-1;
+  }
+
+  .task-bobble-color-2 {
+    background-color: $theme-color-2;
+  }
+
+  .task-bobble-color-3 {
+    background-color: $theme-color-3;
+  }
+
+  .task-bobble-color-4 {
+    background-color: $theme-color-4;
+  }
+}

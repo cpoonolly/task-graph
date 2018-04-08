@@ -10,8 +10,10 @@
     <h2 matSubheader>Tasks</h2>
     <!-- <mat-divider></mat-divider> -->
     <mat-list-item *ngFor="let task of taskList">
-      <mat-icon matListIcon>share</mat-icon>
-      <h3 matLine>{{task.taskName}}</h3>
+      <div class="task-list-item" matLine>
+        <task-bobble [task]="task" class="task-list-item-bobble"></task-bobble>
+        <span class="task-list-item-name">{{task.taskName}}</span>
+      </div>
     </mat-list-item>
   </mat-nav-list>
 </div>

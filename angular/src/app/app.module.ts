@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
@@ -12,16 +11,19 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { TaskGraphToolbarComponent } from './task-graph-toolbar/task-graph-toolbar.component';
 import { TaskGraphSideNavComponent } from './task-graph-side-nav/task-graph-side-nav.component';
+import { TaskBobbleComponent } from './task-bobble/task-bobble.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskGraphToolbarComponent,
-    TaskGraphSideNavComponent
+    TaskGraphSideNavComponent,
+    TaskBobbleComponent
   ],
   imports: [
     BrowserModule,
