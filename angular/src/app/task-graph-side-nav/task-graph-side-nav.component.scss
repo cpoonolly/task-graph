@@ -1,0 +1,20 @@
+.task-graph-side-nav {
+  $side-nav-width: 400px;
+  $side-nav-padding: 16px;
+
+  width: $side-nav-width;
+  padding: $side-nav-padding;
+  min-height: 100%;
+
+  .side-nav-searchbox {
+    width: $side-nav-width - (2 * $side-nav-padding);
+    font-size: 20px;
+  }
+
+  .side-nav-searchbox-icon {
+    margin-right: 10px;
+    font-size: 16px;
+    position: relative;
+    top: 5px;
+  }
+}

@@ -1,0 +1,6 @@
+@import '~@angular/material/theming';
+@import 'app/task-graph-toolbar/task-graph-toolbar-theme';
+
+@mixin components-themed($theme) {
+  @include toolbar-graph-toolbar($theme);
+}

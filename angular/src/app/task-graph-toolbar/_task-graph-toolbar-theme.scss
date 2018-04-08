@@ -1,0 +1,11 @@
+@import '~@angular/material/theming';
+
+@mixin toolbar-graph-toolbar($theme) {
+  $theme-palette: map-get($theme, primary);
+  $theme-color: mat-color($theme-palette, 900);
+
+  .toolbar-menu-header,
+  .toolbar-graph-icon {
+    color: $theme-color;
+  }
+}

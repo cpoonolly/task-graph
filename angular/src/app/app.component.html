@@ -1,0 +1,12 @@
+<mat-sidenav-container class="mat-typography">
+  <mat-sidenav #sidenav mode="over">
+    <task-graph-side-nav></task-graph-side-nav>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="app-wrap">
+    <task-graph-toolbar (menuClick)="sidenav.toggle()"></task-graph-toolbar>
+    <div style="text-align:center">
+      <h1>Welcome to Task Graph!</h1>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
