@@ -1,19 +1,68 @@
 .task-details {
+  $task-btn-radius: 40px; // this is just the size of material's mini-fab-btn
+  $task-details-icon-padding: 10px;
+
+  min-height: 400px;
+
+  .task-details-header {
+    display: flex;
+
+    ::ng-deep > .mat-card-header-text:first-child {
+      margin: 0px;
+    }
+  }
+
   .task-details-bobble {
-    margin-right: 10px;
+    margin-right: $task-details-icon-padding;
   }
 
   .task-details-title {
     margin-top: 1px;
   }
 
-  .task-details-content {
-    padding-top: 10px;
+  .task-details-title-edit {
+    font-size: 20px;
+    margin-top: -20px;
   }
 
   .task-btn {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: $task-details-icon-padding;
+  }
+
+  .task-btn-icon {
+    font-size: 18px;
+  }
+
+  .task-edit-btn {
+    visibility: hidden;
+    right: $task-details-icon-padding;
+  }
+
+  .task-delete-btn {
+    right: $task-details-icon-padding;
+  }
+
+  .task-cancel-btn {
+    right: $task-btn-radius + (2 * $task-details-icon-padding);
+  }
+
+  .task-submit-btn {
+    right: (2 * $task-btn-radius) + (3 * $task-details-icon-padding);
+  }
+
+  &:hover {
+    .task-edit-btn {
+      visibility: visible;
+    }
+  }
+
+  .task-details-content {
+    padding-top: 25px;
+  }
+
+  .task-details-description {
+    width: 100%;
+    font-size: 20px;
   }
 }

@@ -16,6 +16,10 @@ export class TaskDetailsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.initializeForm();
+  }
+
+  initializeForm() {
     this.taskEditForm = new FormGroup({
       'name': new FormControl(this.task.taskName, [
         Validators.required,
@@ -27,5 +31,15 @@ export class TaskDetailsComponent implements OnInit {
 
   toggleEditMode() {
     this.isInEditMode = !this.isInEditMode;
+  }
+
+  submitChanges() {
+    const formModel = this.taskEditForm.value;
+
+    this.task.taskName = formModel.name as string;
+    this.task.taskDescription = formModel.description as string;
+
+    this.toggleEditMode();
+    this.initializeForm();
   }
 }

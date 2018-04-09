@@ -1,24 +1,60 @@
-<mat-card class="task-details">
-  <mat-card-header>
-    <task-bobble [task]="task" class="task-details-bobble"></task-bobble>
-    <h3 class="task-details-title">{{task.taskName}}</h3>
+<form [formGroup]="taskEditForm">
+  <mat-card class="task-details">
+    <mat-card-header class="task-details-header">
+      <!-- Avatar -->
+      <task-bobble [task]="task" class="task-details-bobble"></task-bobble>
 
-    <button mat-mini-fab class="task-btn task-edit-btn" (click)="toggleEditMode()">
-      <mat-icon>edit</mat-icon>
-    </button>
-    <!-- <button mat-mini-fab class="task-btn task-delete-btn">
-      <mat-icon>delete</mat-icon>
-    </button> -->
-  </mat-card-header>
-  <mat-card-content class="task-details-content">
-    <markdown *ngIf="!isInEditMode" [data]="task.taskDescription"></markdown>
-    <form *ngIf="isInEditMode" [formGroup]="taskEditForm">
-      <mat-form-field controlName="description">
-        <textarea matInput matTextareaAutosize
+      <!-- Title -->
+      <h3 class="task-details-title" *ngIf="!isInEditMode">
+        {{task.taskName}}
+      </h3>
+      <mat-form-field class="task-details-title-edit" [floatLabel]="'never'" *ngIf="isInEditMode">
+        <input matInput formControlName="name">
+      </mat-form-field>
+
+      <!-- Buttons -->
+      <button mat-icon-button
+        class="task-btn task-edit-btn"
+        color="accent"
+        *ngIf="!isInEditMode"
+        (click)="toggleEditMode()"
+      >
+        <mat-icon class="task-btn-icon">edit</mat-icon>
+      </button>
+      <button mat-mini-fab
+        class="task-btn task-submit-btn"
+        color="accent"
+        *ngIf="isInEditMode"
+        (click)="submitChanges()"
+      >
+        <mat-icon>check</mat-icon>
+      </button>
+      <button mat-mini-fab
+        class="task-btn task-cancel-btn"
+        color="accent"
+        *ngIf="isInEditMode"
+        (click)="toggleEditMode()"
+      >
+        <mat-icon>clear</mat-icon>
+      </button>
+      <button mat-mini-fab
+        class="task-btn task-delete-btn"
+        color="accent"
+        *ngIf="isInEditMode"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-header>
+    <mat-card-content class="task-details-content">
+      <markdown *ngIf="!isInEditMode" [data]="task.taskDescription"></markdown>
+      <mat-form-field class="task-details-description" *ngIf="isInEditMode">
+        <textarea
+          formControlName="description"
+          matInput matTextareaAutosize
           matAutosizeMinRows="10"
           placeholder="Add a description"
         ></textarea>
       </mat-form-field>
-    </form>
-  </mat-card-content>
-</mat-card>
+    </mat-card-content>
+  </mat-card>
+</form>
