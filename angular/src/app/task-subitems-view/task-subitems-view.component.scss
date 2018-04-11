@@ -1,0 +1,11 @@
+@import '~scss/variables';
+
+.task-subitems-view {
+  $task-subitems-view: $content-viewport-item-height;
+
+  min-height: $task-subitems-view;
+
+  .task-subitems-view-header {
+
+  }
+}

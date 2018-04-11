@@ -1,9 +1,11 @@
+@import '~scss/variables';
+
 .task-view {
   display: flex;
+  min-height: $content-viewport-height;
 
   .task-view-panel {
-    padding: 20px;
-    min-height: calc(100vh);
+    padding: $content-viewport-padding;
   }
 
   .task-view-primary-panel {

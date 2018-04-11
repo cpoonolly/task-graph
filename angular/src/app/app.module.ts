@@ -21,6 +21,7 @@ import { TaskGraphSideNavComponent } from './task-graph-side-nav/task-graph-side
 import { TaskBobbleComponent } from './task-bobble/task-bobble.component';
 import { TaskViewComponent } from './task-view/task-view.component';
 import { TaskDetailsComponent } from './task-details/task-details.component';
+import { TaskSubitemsViewComponent } from './task-subitems-view/task-subitems-view.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { TaskDetailsComponent } from './task-details/task-details.component';
     TaskGraphSideNavComponent,
     TaskBobbleComponent,
     TaskViewComponent,
-    TaskDetailsComponent
+    TaskDetailsComponent,
+    TaskSubitemsViewComponent
   ],
   imports: [
     BrowserModule,

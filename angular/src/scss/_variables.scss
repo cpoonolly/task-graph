@@ -1,0 +1,4 @@
+$primary-header-height: 64px;
+$content-viewport-height: calc(100vh - #{$primary-header-height});
+$content-viewport-padding: 20px;
+$content-viewport-item-height: calc(100vh - #{$primary-header-height} - #{$content-viewport-padding * 2});

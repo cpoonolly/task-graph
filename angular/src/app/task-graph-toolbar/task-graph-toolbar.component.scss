@@ -1,7 +1,9 @@
 @import '~@angular/material/theming';
 @import '~scss/mixins';
+@import '~scss/variables';
 
 .task-graph-toolbar {
+  min-height: $primary-header-height;
   display: flex;
   @include mat-elevation(3);
 

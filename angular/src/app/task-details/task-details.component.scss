@@ -1,8 +1,11 @@
+@import '~scss/variables';
+
 .task-details {
   $task-btn-radius: 40px; // this is just the size of material's mini-fab-btn
   $task-details-icon-padding: 10px;
+  $task-details-height: $content-viewport-item-height;
 
-  min-height: 400px;
+  min-height: $task-details-height;
 
   .task-details-header {
     display: flex;
