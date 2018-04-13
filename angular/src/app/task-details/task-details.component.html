@@ -45,8 +45,23 @@
         <mat-icon>delete</mat-icon>
       </button>
     </mat-card-header>
-    <mat-card-content class="task-details-content">
-      <markdown *ngIf="!isInEditMode" [data]="task.taskDescription"></markdown>
+    <mat-card-content class="task-details-content task-details-content-edit" *ngIf="!isInEditMode">
+      <mat-list>
+        <mat-list-item *ngFor="let taskField of task.fields">
+        </mat-list-item>
+      </mat-list>
+      <!-- <markdown *ngIf="!isInEditMode" [data]="task.taskDescription"></markdown> -->
+    </mat-card-content>
+    <mat-card-content class="task-details-content task-details-content-edit" *ngIf="isInEditMode">
+      <mat-list>
+        <mat-list-item *ngFor="let taskField of task.fields">
+          <task-field-edit [task]="task" [taskField]="taskField"></task-field-edit>
+        </mat-list-item>
+        <mat-list-item>
+          <button mat-button>Add field</button>
+        </mat-list-item>
+      </mat-list>
+      <!--
       <mat-form-field class="task-details-description" *ngIf="isInEditMode">
         <textarea
           formControlName="description"
@@ -55,6 +70,7 @@
           placeholder="Add a description"
         ></textarea>
       </mat-form-field>
+       -->
     </mat-card-content>
   </mat-card>
 </form>

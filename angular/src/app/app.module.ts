@@ -24,6 +24,7 @@ import { TaskDetailsComponent } from './task-details/task-details.component';
 import { TaskSubitemsViewComponent } from './task-subitems-view/task-subitems-view.component';
 import { TasksFiltersComponent } from './tasks-filters/tasks-filters.component';
 import { TaskGraphSearchBoxComponent } from './task-graph-search-box/task-graph-search-box.component';
+import { TaskFieldEditComponent } from './task-field-edit/task-field-edit.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { TaskGraphSearchBoxComponent } from './task-graph-search-box/task-graph-
     TaskDetailsComponent,
     TaskSubitemsViewComponent,
     TasksFiltersComponent,
-    TaskGraphSearchBoxComponent
+    TaskGraphSearchBoxComponent,
+    TaskFieldEditComponent
   ],
   imports: [
     BrowserModule,
