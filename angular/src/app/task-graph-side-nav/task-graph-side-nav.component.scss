@@ -6,18 +6,6 @@
   padding: $side-nav-padding;
   min-height: 100%;
 
-  .side-nav-searchbox {
-    width: $side-nav-width - (2 * $side-nav-padding);
-    font-size: 20px;
-  }
-
-  .side-nav-searchbox-icon {
-    margin-right: 10px;
-    font-size: 16px;
-    position: relative;
-    top: 5px;
-  }
-
   .task-list-item {
     display: flex;
   }
@@ -28,5 +16,13 @@
 
   .task-list-item-name {
     margin-top: 5px;
+  }
+
+  .side-nav-searchbox {
+    width: $side-nav-width - (2 * $side-nav-padding);
+
+    ::ng-deep .task-graph-search-box {
+      width: 100%;
+    }
   }
 }

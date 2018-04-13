@@ -1,11 +1,5 @@
 <div class="task-graph-side-nav">
-  <mat-form-field class="side-nav-searchbox" [floatLabel]="'never'">
-    <input matInput type="search" placeholder="Search"/>
-    <span matPrefix class="side-nav-searchbox-icon">
-      <mat-icon>search</mat-icon>
-    </span>
-  </mat-form-field>
-
+  <task-graph-search-box class="side-nav-searchbox"></task-graph-search-box>
   <mat-nav-list>
     <h2 matSubheader>Tasks</h2>
     <!-- <mat-divider></mat-divider> -->
