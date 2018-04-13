@@ -22,6 +22,7 @@ import { TaskBobbleComponent } from './task-bobble/task-bobble.component';
 import { TaskViewComponent } from './task-view/task-view.component';
 import { TaskDetailsComponent } from './task-details/task-details.component';
 import { TaskSubitemsViewComponent } from './task-subitems-view/task-subitems-view.component';
+import { TasksFiltersComponent } from './tasks-filters/tasks-filters.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { TaskSubitemsViewComponent } from './task-subitems-view/task-subitems-vi
     TaskBobbleComponent,
     TaskViewComponent,
     TaskDetailsComponent,
-    TaskSubitemsViewComponent
+    TaskSubitemsViewComponent,
+    TasksFiltersComponent
   ],
   imports: [
     BrowserModule,

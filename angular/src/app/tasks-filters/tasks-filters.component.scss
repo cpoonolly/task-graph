@@ -1,0 +1,11 @@
+.tasks-filters {
+  overflow: hidden;
+  max-height: 0px;
+  transition: max-height 0.5s ease-out;
+  -webkit-transition:  max-height 0.5s ease-out; /* Safari */
+
+  &.is-open {
+    max-height: 100px;
+    overflow-y: auto;
+  }
+}
