@@ -1,3 +1,16 @@
-<p>
-  task-field-edit works!
-</p>
+<div [formGroup]="form" class="task-field-edit">
+  <div class="task-field-header">
+    <mat-form-field class="task-field-name">
+      <input matInput [(ngModel)]="fieldName"/>
+    </mat-form-field>
+    <mat-form-field class="task-field-type">
+      <mat-select placeholder="Field Type" ([ngModel])="fieldType">
+        <mat-option *ngFor="let fieldTypeOption of fieldTypeOptions" [value]="fieldTypeOption.value">
+          {{fieldTypeOption.label}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="task-field-content">
+  </div>
+</div>

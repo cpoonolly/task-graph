@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Task } from '../task.model';
+import { Task, TaskField, TaskFieldType } from '../task.model';
+import { TaskFieldEditFormControl } from '../task-field-edit/task-field-edit-form-control.model';
 
 @Component({
   selector: 'task-details',
@@ -10,8 +11,11 @@ import { Task } from '../task.model';
 export class TaskDetailsComponent implements OnInit {
   @Input() task: Task;
 
-  isInEditMode: boolean = false;
+  isEditModeEnabled: boolean = false;
   taskEditForm: FormGroup;
+  taskStartDateControl: FormControl;
+  taskEndDateControl: FormControl
+  taskFields: TaskField[];
 
   constructor() { }
 
@@ -20,26 +24,49 @@ export class TaskDetailsComponent implements OnInit {
   }
 
   initializeForm() {
+    this.taskFields = [];
+
+    this.taskStartDateControl = new FormControl(this.task.startDate || new Date());
+    this.taskEndDateControl = new FormControl(this.task.endDate || new Date());
     this.taskEditForm = new FormGroup({
       'name': new FormControl(this.task.taskName, [
         Validators.required,
         Validators.minLength(1)
       ]),
-      'description': new FormControl(this.task.taskDescription || '')
+      'description': new FormControl(this.task.description),
+      'startDate': this.taskStartDateControl,
+      'endDate': this.taskEndDateControl
     });
+
+    this.taskFields = [...this.task.fields];
   }
 
-  toggleEditMode() {
-    this.isInEditMode = !this.isInEditMode;
+  enableEditMode() {
+    this.isEditModeEnabled = true;
+    this.initializeForm();
+  }
+
+  disableEditMode() {
+    this.isEditModeEnabled = false;
+  }
+
+  addField() {
+    let key = `task_${this.task.taskId}_field_${this.taskFields.length}`;
+    let fieldName = `Field #${this.taskFields.length}`;
+    let fieldType = TaskFieldType.TEXT_SHORT;
+    let field = new TaskField(key, fieldName, fieldType, '');
+
+    this.taskFields.push(field);
   }
 
   submitChanges() {
     const formModel = this.taskEditForm.value;
 
     this.task.taskName = formModel.name as string;
-    this.task.taskDescription = formModel.description as string;
+    this.task.description = formModel.description as string;
+    this.task.startDate = formModel.startDate as Date;
+    this.task.endDate = formModel.endDate as Date;
 
-    this.toggleEditMode();
-    this.initializeForm();
+    this.disableEditMode();
   }
 }

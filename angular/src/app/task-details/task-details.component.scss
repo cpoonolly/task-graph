@@ -68,4 +68,9 @@
     width: 100%;
     font-size: 20px;
   }
+
+  .task-details-dates {
+    display: flex;
+    justify-content: space-between;
+  }
 }

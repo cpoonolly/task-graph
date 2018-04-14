@@ -1,3 +1,5 @@
+import { FormControl } from "@angular/forms";
+
 export class TaskGraphNode {
   public readonly id: number;
   public readonly taskId: number;
@@ -12,12 +14,16 @@ export class TaskGraph {
 
 export class Task {
   public readonly taskId: number;
-  public readonly taskName: string;
-  public readonly fields: TaskField[];
+  public taskName: string;
+  public description: string;
+  public startDate: Date;
+  public endDate: Date;
+  public fields: TaskField[];
 
   constructor(id: number, name: string) {
     this.taskId = id;
     this.taskName = name;
+    this.description;
     this.fields = [];
   }
 }
@@ -32,17 +38,15 @@ export enum TaskFieldType {
 }
 
 export class TaskField {
+  public key: string;
   public fieldName: string;
   public fieldType: TaskFieldType;
   public value: any;
 
-  constructor(name: string, type: TaskFieldType, value: any) {
+  constructor(key: string, name: string, type: TaskFieldType, value: any) {
+    this.key = key;
     this.fieldName = name;
     this.fieldType = type;
     this.value = value;
-  }
-
-  public clone(): TaskField {
-    return new TaskField(this.fieldName, this.fieldType, this.value);
   }
 }
