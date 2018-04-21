@@ -1,8 +1,15 @@
+@import '~scss/core';
+
+:host {
+  width: 100%;
+}
+
 .task-field-edit {
   margin-bottom: 20px;
 
   .task-field-header {
-
+    display: flex;
+    justify-content: space-between;
   }
 
   .task-field-content {

@@ -1,12 +1,13 @@
 <mat-card class="task-subitems-view">
-  <mat-card-header>
+  <!-- No need for filters for now -->
+  <!-- <mat-card-header>
     <div class="task-subitems-view-header">
       <button mat-button (click)="toggleFilters()">Filters</button>
       <tasks-filters [isFilterOpen]="isFilterOpen"></tasks-filters>
     </div>
-  </mat-card-header>
+  </mat-card-header> -->
   <mat-card-content>
-    <mat-divider></mat-divider>
+    <!-- <mat-divider></mat-divider> -->
     <mat-list class="task-subitems-list">
       <h3 mat-subheader>Sub Tasks</h3>
       <mat-list-item *ngFor="let subTask of subTasks">

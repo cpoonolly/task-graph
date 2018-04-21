@@ -28,6 +28,7 @@ export class Task {
   }
 }
 
+/* Not using this now maybe we will someday in the future */
 export enum TaskFieldType {
   TEXT_SHORT,
   TEXT_LONG,

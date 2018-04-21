@@ -70,12 +70,13 @@
       <mat-form-field class="task-details-description">
         <textarea formControlName="description" matInput placeholder="Add a description"></textarea>
       </mat-form-field>
-      <mat-list>
-        <mat-list-item *ngFor="let taskField of taskFields">
+      <!-- Not doing custom fields for now -->
+      <!-- <ul class="task-details-fields">
+        <li class="task-details-field" *ngFor="let taskField of taskFields">
           <task-field-edit [taskField]="taskField" [form]="taskEditForm"></task-field-edit>
-        </mat-list-item>
-      </mat-list>
-      <button mat-button (click)="addField()">Add field</button>
+        </li>
+      </ul>
+      <button mat-button (click)="addField()">Add field</button> -->
     </mat-card-content>
   </mat-card>
 </form>

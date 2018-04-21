@@ -17,12 +17,15 @@ export class TaskFieldEditComponent implements OnInit {
   @Input() taskField: TaskField;
   @Input() form: FormGroup;
 
-  public formControlName: string;
+  public taskFieldTypeEnum = TaskFieldType;
+
   public fieldName: string;
   public fieldType: TaskFieldType;
-  public value: any;
-
+  public fieldValue: any;
   public fieldTypeOptions: ITaskFieldTypeOption[];
+
+  public formControlName: string;
+  public formControl: FormControl;
 
   constructor() { }
 
@@ -30,7 +33,7 @@ export class TaskFieldEditComponent implements OnInit {
     this.formControlName = this.taskField.key;
     this.fieldName = this.taskField.fieldName;
     this.fieldType = this.taskField.fieldType;
-    this.value = this.taskField.value;
+    this.fieldValue = this.taskField.value;
     this.fieldTypeOptions = [];
 
     // get a list of all the enum options
@@ -43,6 +46,7 @@ export class TaskFieldEditComponent implements OnInit {
       }
     }
 
-    this.form.addControl(this.formControlName, new FormControl(this.value));
+    this.formControl = new FormControl(this.fieldValue);
+    this.form.addControl(this.formControlName, this.formControl);
   }
 }
