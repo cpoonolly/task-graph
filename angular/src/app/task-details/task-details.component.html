@@ -48,10 +48,10 @@
     <!-- View Content -->
     <mat-card-content class="task-details-content task-details-content-edit" *ngIf="!isEditModeEnabled">
       <markdown [data]="task.description"></markdown>
-      <mat-list>
+      <!-- <mat-list>
         <mat-list-item *ngFor="let taskField of task.fields">
         </mat-list-item>
-      </mat-list>
+      </mat-list> -->
     </mat-card-content>
     <!-- Edit Content -->
     <mat-card-content class="task-details-content task-details-content-edit" *ngIf="isEditModeEnabled">
@@ -68,7 +68,10 @@
         </mat-form-field>
       </div>
       <mat-form-field class="task-details-description">
-        <textarea formControlName="description" matInput placeholder="Add a description"></textarea>
+        <textarea formControlName="description" matInput matTextareaAutosize
+          matAutosizeMinRows="{{descriptionMinRows}}"
+          placeholder="Add a description"
+        ></textarea>
       </mat-form-field>
       <!-- Not doing custom fields for now -->
       <!-- <ul class="task-details-fields">

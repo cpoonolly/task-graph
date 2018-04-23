@@ -1,3 +1,4 @@
+/*
 import { Component, OnInit, Input } from '@angular/core';
 import { TaskField, Task, TaskFieldType } from '../task.model';
 import { TaskFieldEditFormControl } from './task-field-edit-form-control.model';
@@ -50,3 +51,4 @@ export class TaskFieldEditComponent implements OnInit {
     this.form.addControl(this.formControlName, this.formControl);
   }
 }
+*/

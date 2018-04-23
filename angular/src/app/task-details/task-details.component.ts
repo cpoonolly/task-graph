@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Task, TaskField, TaskFieldType } from '../task.model';
-import { TaskFieldEditFormControl } from '../task-field-edit/task-field-edit-form-control.model';
+import { Task } from '../task.model';
+// import { TaskField, TaskFieldType } from '../task.model';
+// import { TaskFieldEditFormControl } from '../task-field-edit/task-field-edit-form-control.model';
 
 @Component({
   selector: 'task-details',
@@ -15,7 +16,8 @@ export class TaskDetailsComponent implements OnInit {
   taskEditForm: FormGroup;
   taskStartDateControl: FormControl;
   taskEndDateControl: FormControl
-  taskFields: TaskField[];
+  // taskFields: TaskField[];
+  descriptionMinRows = 5;
 
   constructor() { }
 
@@ -24,7 +26,7 @@ export class TaskDetailsComponent implements OnInit {
   }
 
   initializeForm() {
-    this.taskFields = [];
+    // this.taskFields = [];
 
     this.taskStartDateControl = new FormControl(this.task.startDate || new Date());
     this.taskEndDateControl = new FormControl(this.task.endDate || new Date());
@@ -38,7 +40,7 @@ export class TaskDetailsComponent implements OnInit {
       'endDate': this.taskEndDateControl
     });
 
-    this.taskFields = [...this.task.fields];
+    // this.taskFields = [...this.task.fields];
   }
 
   enableEditMode() {
@@ -50,14 +52,14 @@ export class TaskDetailsComponent implements OnInit {
     this.isEditModeEnabled = false;
   }
 
-  addField() {
-    let key = `task_${this.task.taskId}_field_${this.taskFields.length}`;
-    let fieldName = `Field #${this.taskFields.length}`;
-    let fieldType = TaskFieldType.TEXT_SHORT;
-    let field = new TaskField(key, fieldName, fieldType, '');
-
-    this.taskFields.push(field);
-  }
+  // addField() {
+  //   let key = `task_${this.task.taskId}_field_${this.taskFields.length}`;
+  //   let fieldName = `Field #${this.taskFields.length}`;
+  //   let fieldType = TaskFieldType.TEXT_SHORT;
+  //   let field = new TaskField(key, fieldName, fieldType, '');
+  //
+  //   this.taskFields.push(field);
+  // }
 
   submitChanges() {
     const formModel = this.taskEditForm.value;

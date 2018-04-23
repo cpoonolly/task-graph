@@ -27,7 +27,8 @@ import { TaskDetailsComponent } from './task-details/task-details.component';
 import { TaskSubitemsViewComponent } from './task-subitems-view/task-subitems-view.component';
 import { TasksFiltersComponent } from './tasks-filters/tasks-filters.component';
 import { TaskGraphSearchBoxComponent } from './task-graph-search-box/task-graph-search-box.component';
-import { TaskFieldEditComponent } from './task-field-edit/task-field-edit.component';
+import { TaskService } from './task.service';
+// import { TaskFieldEditComponent } from './task-field-edit/task-field-edit.component';
 
 @NgModule({
   declarations: [
@@ -39,8 +40,8 @@ import { TaskFieldEditComponent } from './task-field-edit/task-field-edit.compon
     TaskDetailsComponent,
     TaskSubitemsViewComponent,
     TasksFiltersComponent,
-    TaskGraphSearchBoxComponent,
-    TaskFieldEditComponent
+    TaskGraphSearchBoxComponent
+    // TaskFieldEditComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +64,9 @@ import { TaskFieldEditComponent } from './task-field-edit/task-field-edit.compon
     MatSidenavModule,
     MarkdownModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    TaskService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

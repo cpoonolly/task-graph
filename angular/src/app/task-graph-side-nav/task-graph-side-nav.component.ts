@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from '../task.model';
+import { TaskService } from '../task.service';
+import { TaskGraph } from '../task-graph.model';
 
 @Component({
   selector: 'task-graph-side-nav',
@@ -7,21 +9,17 @@ import { Task } from '../task.model';
   styleUrls: ['./task-graph-side-nav.component.scss']
 })
 export class TaskGraphSideNavComponent implements OnInit {
+  taskGraph: TaskGraph;
   taskList: Task[];
 
-  constructor() {
-    this.taskList = [
-      new Task(1, 'Pepper'),
-      new Task(2, 'Salt'),
-      new Task(3, 'Paprika'),
-      new Task(4, 'Pepper1'),
-      new Task(5, 'Salt2'),
-      new Task(6, 'Papriksda'),
-      new Task(7, 'Peppesdfr'),
-      new Task(8, 'Sadslt'),
-      new Task(9, 'Papfdsrika')
-    ];
-  }
+  constructor(
+    private taskService: TaskService
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.taskService.getTaskGraph().subscribe((taskGraph) => {
+      this.taskGraph = taskGraph;
+      this.taskList = taskGraph.getAllTasks();
+    });
+  }
 }

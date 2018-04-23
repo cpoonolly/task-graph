@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Task } from './task.model';
+import { TaskGraph } from './task-graph.model';
+import { TaskService } from './task.service';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +9,17 @@ import { Task } from './task.model';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  taskGraph: TaskGraph;
   task: Task;
 
-  constructor() { }
+  constructor(
+    private taskService: TaskService
+  ) { }
+
   ngOnInit() {
-    this.task = new Task(1, 'My Task');
+    this.taskService.getTaskGraph().subscribe((taskGraph) => {
+      this.taskGraph = taskGraph;
+      this.task = taskGraph.root;
+    });
   }
 }

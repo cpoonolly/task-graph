@@ -16,12 +16,7 @@ export class TaskSubitemsViewComponent implements OnInit {
 
   ngOnInit() {
     this.isFilterOpen = false;
-    this.subTasks = [
-      new Task(1, 'my task'),
-      new Task(2, 'my other task'),
-      new Task(3, 'other task'),
-      new Task(4, 'not creative with these names')
-    ];
+    this.subTasks = Array.from(this.task.subTasks.values());
   }
 
   toggleFilters() {
