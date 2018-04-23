@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Task } from '../task.model';
+import { TaskService } from '../task.service';
 
 @Component({
   selector: 'task-subitems-view',
@@ -12,7 +13,9 @@ export class TaskSubitemsViewComponent implements OnInit {
   subTasks: Task[];
   isFilterOpen: boolean;
 
-  constructor() {}
+  constructor(
+    private taskService: TaskService
+  ) {}
 
   ngOnInit() {
     this.isFilterOpen = false;
@@ -21,5 +24,11 @@ export class TaskSubitemsViewComponent implements OnInit {
 
   toggleFilters() {
     this.isFilterOpen = !this.isFilterOpen;
+  }
+
+  addSubTask() {
+    this.taskService.createNewTask(this.task.taskId).subscribe(
+      (newTask) => this.subTasks = Array.from(this.task.subTasks.values())
+    );
   }
 }

@@ -58,7 +58,11 @@ export class TaskService {
     }
 
     return Observable.of(new Task(this.generateTaskData()))
-      .pipe(mergeMap((newTask) => this.linkTasks(parentTaskId, newTask.taskId)));
+      .pipe(mergeMap((newTask) => {
+        this.taskGraph.tasks[newTask.taskId] = newTask;
+
+        return this.linkTasks(parentTaskId, newTask.taskId);
+      }));
   }
 
   public deleteTask(taskId: number): Observable<Task> {
