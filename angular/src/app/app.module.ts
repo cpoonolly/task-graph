@@ -28,6 +28,7 @@ import { TaskSubitemsViewComponent } from './task-subitems-view/task-subitems-vi
 import { TasksFiltersComponent } from './tasks-filters/tasks-filters.component';
 import { TaskGraphSearchBoxComponent } from './task-graph-search-box/task-graph-search-box.component';
 import { TaskService } from './task.service';
+import { AppRoutingModule } from './/app-routing.module';
 // import { TaskFieldEditComponent } from './task-field-edit/task-field-edit.component';
 
 @NgModule({
@@ -62,7 +63,8 @@ import { TaskService } from './task.service';
     MatToolbarModule,
     MatSelectModule,
     MatSidenavModule,
-    MarkdownModule.forRoot()
+    MarkdownModule.forRoot(),
+    AppRoutingModule
   ],
   providers: [
     TaskService

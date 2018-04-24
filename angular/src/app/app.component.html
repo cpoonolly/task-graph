@@ -5,6 +5,6 @@
 
   <mat-sidenav-content class="app-wrap">
     <task-graph-toolbar (menuClick)="sidenav.toggle()"></task-graph-toolbar>
-    <task-view [task]="task"></task-view>
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

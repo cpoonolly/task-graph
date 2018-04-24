@@ -40,6 +40,10 @@ export class TaskService {
     }
   }
 
+  public getRootTask(): Observable<Task> {
+    return Observable.of(this.taskGraph.root);
+  }
+
   public getTask(taskId: number): Observable<Task> {
     let task = this.taskGraph.tasks[taskId];
 
