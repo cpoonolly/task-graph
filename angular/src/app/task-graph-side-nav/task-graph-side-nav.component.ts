@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Task } from '../task.model';
 import { TaskService } from '../task.service';
 import { TaskGraph } from '../task-graph.model';
@@ -9,17 +9,12 @@ import { TaskGraph } from '../task-graph.model';
   styleUrls: ['./task-graph-side-nav.component.scss']
 })
 export class TaskGraphSideNavComponent implements OnInit {
-  taskGraph: TaskGraph;
-  taskList: Task[];
+  @Input() taskGraph: TaskGraph;
 
-  constructor(
-    private taskService: TaskService
-  ) { }
+  public taskList: Task[];
 
+  constructor() { }
   ngOnInit() {
-    this.taskService.getTaskGraph().subscribe((taskGraph) => {
-      this.taskGraph = taskGraph;
-      this.taskList = taskGraph.getAllTasks();
-    });
+    this.taskList = this.taskGraph.tasks;
   }
 }

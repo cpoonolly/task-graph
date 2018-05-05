@@ -45,7 +45,7 @@ export class TaskService {
   }
 
   public getTask(taskId: number): Observable<Task> {
-    let task = this.taskGraph.tasks[taskId];
+    let task = this.taskGraph.tasksById[taskId];
 
     if (!task) {
       return Observable.throw(`Invalid taskId ${taskId}`);
@@ -55,7 +55,7 @@ export class TaskService {
   }
 
   public createNewTask(parentTaskId: number): Observable<Task> {
-    let parentTask = this.taskGraph.tasks[parentTaskId];
+    let parentTask = this.taskGraph.tasksById[parentTaskId];
 
     if (!parentTask) {
       return Observable.throw(`Invalid parentTaskId ${parentTaskId}`);
@@ -63,14 +63,15 @@ export class TaskService {
 
     return Observable.of(new Task(this.generateTaskData()))
       .pipe(mergeMap((newTask) => {
-        this.taskGraph.tasks[newTask.taskId] = newTask;
+        this.taskGraph.tasksById[newTask.taskId] = newTask;
+        this.taskGraph.tasks.push(newTask);
 
         return this.linkTasks(parentTaskId, newTask.taskId);
       }));
   }
 
   public deleteTask(taskId: number): Observable<Task> {
-    let task = this.taskGraph.tasks[taskId];
+    let task = this.taskGraph.tasksById[taskId];
     let unlinkObservables: Observable<Task>[];
 
     if (!task) {
@@ -88,12 +89,19 @@ export class TaskService {
     }
 
     return Observable.of(...unlinkObservables)
-      .pipe(mergeMap(() => Observable.of(task)));
+      .pipe(mergeMap(() => {
+        delete this.taskGraph.tasksById[task.taskId];
+
+        let tasks = this.taskGraph.tasks;
+        tasks.splice(tasks.indexOf(task), 1);
+
+        return Observable.of(task);
+      }));
   }
 
   public linkTasks(parentTaskId: number, subTaskId: number): Observable<Task> {
-    let parentTask = this.taskGraph.tasks[parentTaskId];
-    let subTask = this.taskGraph.tasks[subTaskId];
+    let parentTask = this.taskGraph.tasksById[parentTaskId];
+    let subTask = this.taskGraph.tasksById[subTaskId];
 
     // error if the tasks are already linked
     for (let task of Array.from(parentTask.subTasks.values())) { // this is how you iterate a set yuck..
@@ -107,8 +115,8 @@ export class TaskService {
   }
 
   public unlinkTasks(parentTaskId: number, subTaskId: number): Observable<Task> {
-    let parentTask = this.taskGraph.tasks[parentTaskId];
-    let subTask = this.taskGraph.tasks[subTaskId];
+    let parentTask = this.taskGraph.tasksById[parentTaskId];
+    let subTask = this.taskGraph.tasksById[subTaskId];
 
     if (!parentTask) {
       return Observable.throw(`Invalid parentTaskId ${parentTaskId}`);
