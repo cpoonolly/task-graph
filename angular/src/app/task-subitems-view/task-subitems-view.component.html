@@ -10,7 +10,7 @@
     <!-- <mat-divider></mat-divider> -->
     <mat-list class="task-subitems-list">
       <h3 mat-subheader>Sub Tasks</h3>
-      <mat-list-item *ngFor="let subTask of subTasks">
+      <mat-list-item *ngFor="let subTask of subTasks" routerLink="/task/{{subTask.taskId}}">
         <task-bobble mat-list-icon [task]="subTask"></task-bobble>
         <h4 mat-line>{{subTask.taskName}}</h4>
       </mat-list-item>

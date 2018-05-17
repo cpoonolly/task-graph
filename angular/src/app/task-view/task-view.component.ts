@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Task } from '../task.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from '../task.service';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'task-view',
@@ -12,23 +13,23 @@ export class TaskViewComponent implements OnInit {
   @Input() task: Task;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private taskService: TaskService
   ) { }
 
   ngOnInit(): void {
-    if (!this.task) {
-      this.loadTaskFromPath();
-    }
-  }
-
-  loadTaskFromPath() {
-    const taskId = +this.route.snapshot.paramMap.get('taskId');
-
-    if (taskId) {
-      this.taskService.getTask(taskId).subscribe((task) => this.task = task);
-    } else {
-      this.taskService.getRootTask().subscribe((task) => this.task = task);
-    }
+    this.route.params
+      .map((params) => +params['taskId'])
+      .switchMap((taskId) => {
+        if (taskId) {
+          return this.taskService.getTask(taskId);
+        } else {
+          return this.taskService.getRootTask();
+        }
+      })
+      .subscribe((task) => {
+        this.task = task;
+      });
   }
 }

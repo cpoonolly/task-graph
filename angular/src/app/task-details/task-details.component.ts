@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Task } from '../task.model';
+import { TaskService } from '../task.service';
 // import { TaskField, TaskFieldType } from '../task.model';
 // import { TaskFieldEditFormControl } from '../task-field-edit/task-field-edit-form-control.model';
 
@@ -19,9 +20,16 @@ export class TaskDetailsComponent implements OnInit {
   // taskFields: TaskField[];
   descriptionMinRows = 5;
 
-  constructor() { }
+  constructor(
+    private taskService: TaskService
+  ) { }
 
   ngOnInit() {
+    this.initializeForm();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.task = changes.task.currentValue;
     this.initializeForm();
   }
 
@@ -69,6 +77,8 @@ export class TaskDetailsComponent implements OnInit {
     this.task.startDate = formModel.startDate as Date;
     this.task.endDate = formModel.endDate as Date;
 
-    this.disableEditMode();
+    this.taskService.saveTaskGraph().subscribe(() => {
+      this.disableEditMode();
+    });
   }
 }

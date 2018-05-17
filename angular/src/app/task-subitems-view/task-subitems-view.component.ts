@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { Task } from '../task.model';
 import { TaskService } from '../task.service';
 
@@ -19,6 +19,11 @@ export class TaskSubitemsViewComponent implements OnInit {
 
   ngOnInit() {
     this.isFilterOpen = false;
+    this.subTasks = Array.from(this.task.subTasks.values());
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.task = changes.task.currentValue;
     this.subTasks = Array.from(this.task.subTasks.values());
   }
 
