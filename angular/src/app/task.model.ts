@@ -8,10 +8,10 @@ export interface ITask {
 }
 
 export class Task {
-  private static readonly DEFAULT_TASK_NAME = "My New Task";
-  private static LAST_TASK_ID = 1;
+
 
   public readonly taskId: number;
+  public readonly isRoot: boolean;
   public taskName: string;
   public description?: string;
   public startDate?: Date;
@@ -20,8 +20,9 @@ export class Task {
   public parentTasks: Set<Task>;
   // public fields: TaskField[]; Not using this now
 
-  constructor(data: ITask) {
+  constructor(data: ITask, isRoot = false) {
     this.taskId = data.taskId;
+    this.isRoot = isRoot;
     this.taskName = data.taskName;
     this.description = data.description;
     this.startDate = data.startDate;
@@ -40,17 +41,5 @@ export class Task {
       endDate: this.endDate,
       subTaskIds: Array.from(this.subTasks.values()).map((task) => task.taskId)
     };
-  }
-
-  public static createNewTask(): Task {
-    return new Task({
-      taskId: Task.getNextTaskId(),
-      taskName: Task.DEFAULT_TASK_NAME,
-      subTaskIds: []
-    });
-  }
-
-  private static getNextTaskId(): number {
-    return Task.LAST_TASK_ID++;
   }
 }

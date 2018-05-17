@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -29,6 +30,7 @@ import { TasksFiltersComponent } from './tasks-filters/tasks-filters.component';
 import { TaskGraphSearchBoxComponent } from './task-graph-search-box/task-graph-search-box.component';
 import { TaskService } from './task.service';
 import { AppRoutingModule } from './/app-routing.module';
+import { TaskEditModalComponent } from './task-edit-modal/task-edit-modal.component';
 // import { TaskFieldEditComponent } from './task-field-edit/task-field-edit.component';
 
 @NgModule({
@@ -41,7 +43,8 @@ import { AppRoutingModule } from './/app-routing.module';
     TaskDetailsComponent,
     TaskSubitemsViewComponent,
     TasksFiltersComponent,
-    TaskGraphSearchBoxComponent
+    TaskGraphSearchBoxComponent,
+    TaskEditModalComponent
     // TaskFieldEditComponent
   ],
   imports: [
@@ -53,6 +56,7 @@ import { AppRoutingModule } from './/app-routing.module';
     MatButtonToggleModule,
     MatCardModule,
     MatDatepickerModule,
+    MatDialogModule,
     MatDividerModule,
     MatExpansionModule,
     MatFormFieldModule,
@@ -65,6 +69,9 @@ import { AppRoutingModule } from './/app-routing.module';
     MatSidenavModule,
     MarkdownModule.forRoot(),
     AppRoutingModule
+  ],
+  entryComponents: [
+    TaskEditModalComponent
   ],
   providers: [
     TaskService

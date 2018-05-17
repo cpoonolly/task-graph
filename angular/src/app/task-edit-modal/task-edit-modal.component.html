@@ -1,0 +1,20 @@
+<form [formGroup]="taskEditForm">
+  <h1 mat-dialog-title>Edit Task</h1>
+  <div mat-dialog-content>
+    <mat-form-field class="task-details-title-edit" [floatLabel]="'never'">
+      <input matInput formControlName="name">
+    </mat-form-field>
+    <div class="task-details-content task-details-content-edit">
+      <mat-form-field class="task-details-description">
+        <textarea formControlName="description" matInput matTextareaAutosize
+          matAutosizeMinRows="{{descriptionMinRows}}"
+          placeholder="Add a description"
+        ></textarea>
+      </mat-form-field>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="cancelChanges()">Cancel</button>
+    <button mat-button (click)="saveChanges()">Save</button>
+  </div>
+</form>

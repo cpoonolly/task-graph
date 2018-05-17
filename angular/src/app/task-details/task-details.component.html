@@ -1,85 +1,32 @@
-<form [formGroup]="taskEditForm">
-  <mat-card class="task-details">
-    <mat-card-header class="task-details-header">
-      <!-- Avatar -->
-      <task-bobble [task]="task" class="task-details-bobble"></task-bobble>
+<mat-card class="task-details">
+  <mat-card-header class="task-details-header">
+    <!-- Avatar -->
+    <task-bobble [task]="task" class="task-details-bobble"></task-bobble>
 
-      <!-- Title -->
-      <h3 class="task-details-title" *ngIf="!isEditModeEnabled">
-        {{task.taskName}}
-      </h3>
-      <mat-form-field class="task-details-title-edit" [floatLabel]="'never'" *ngIf="isEditModeEnabled">
-        <input matInput formControlName="name">
-      </mat-form-field>
+    <!-- Title -->
+    <h3 class="task-details-title">
+      {{task.taskName}}
+    </h3>
 
-      <!-- Buttons -->
-      <button mat-icon-button
-        class="task-btn task-edit-btn"
-        color="accent"
-        *ngIf="!isEditModeEnabled"
-        (click)="enableEditMode()"
-      >
-        <mat-icon class="task-btn-icon">edit</mat-icon>
-      </button>
-      <button mat-mini-fab
-        class="task-btn task-submit-btn"
-        color="accent"
-        *ngIf="isEditModeEnabled"
-        (click)="submitChanges()"
-      >
-        <mat-icon>check</mat-icon>
-      </button>
-      <button mat-mini-fab
-        class="task-btn task-cancel-btn"
-        color="accent"
-        *ngIf="isEditModeEnabled"
-        (click)="disableEditMode()"
-      >
-        <mat-icon>clear</mat-icon>
-      </button>
-      <button mat-mini-fab
-        class="task-btn task-delete-btn"
-        color="accent"
-        *ngIf="isEditModeEnabled"
-      >
-        <mat-icon>delete</mat-icon>
-      </button>
-    </mat-card-header>
-    <!-- View Content -->
-    <mat-card-content class="task-details-content task-details-content-edit" *ngIf="!isEditModeEnabled">
-      <markdown [data]="task.description"></markdown>
-      <!-- <mat-list>
-        <mat-list-item *ngFor="let taskField of task.fields">
-        </mat-list-item>
-      </mat-list> -->
-    </mat-card-content>
-    <!-- Edit Content -->
-    <mat-card-content class="task-details-content task-details-content-edit" *ngIf="isEditModeEnabled">
-      <div class="task-details-dates">
-        <mat-form-field>
-          <input matInput [matDatepicker]="taskStartDate" placeholder="Start Date" [formControl]="taskStartDateControl">
-          <mat-datepicker-toggle matSuffix [for]="taskStartDate"></mat-datepicker-toggle>
-          <mat-datepicker #taskStartDate></mat-datepicker>
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput [matDatepicker]="taskEndDate" placeholder="End Date" [formControl]="taskEndDateControl">
-          <mat-datepicker-toggle matSuffix [for]="taskEndDate"></mat-datepicker-toggle>
-          <mat-datepicker #taskEndDate></mat-datepicker>
-        </mat-form-field>
-      </div>
-      <mat-form-field class="task-details-description">
-        <textarea formControlName="description" matInput matTextareaAutosize
-          matAutosizeMinRows="{{descriptionMinRows}}"
-          placeholder="Add a description"
-        ></textarea>
-      </mat-form-field>
-      <!-- Not doing custom fields for now -->
-      <!-- <ul class="task-details-fields">
-        <li class="task-details-field" *ngFor="let taskField of taskFields">
-          <task-field-edit [taskField]="taskField" [form]="taskEditForm"></task-field-edit>
-        </li>
-      </ul>
-      <button mat-button (click)="addField()">Add field</button> -->
-    </mat-card-content>
-  </mat-card>
-</form>
+    <!-- Buttons -->
+    <button mat-mini-fab
+      class="task-btn task-edit-btn"
+      color="accent"
+      (click)="openEditModal()"
+    >
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-mini-fab
+      class="task-btn task-delete-btn"
+      color="accent"
+      *ngIf="!task.isRoot"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-card-header>
+
+  <!-- Content -->
+  <mat-card-content class="task-details-content task-details-content-edit">
+    <markdown [data]="task.description"></markdown>
+  </mat-card-content>
+</mat-card>

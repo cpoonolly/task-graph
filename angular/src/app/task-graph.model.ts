@@ -7,6 +7,8 @@ export interface ITaskGraph {
 
 export class TaskGraph {
   private static readonly GRAPH_STORAGE_KEY = "task_graph";
+  private static readonly DEFAULT_TASK_NAME = "My New Task";
+  private static NEXT_TASK_ID = 1;
 
   public readonly root: Task;
   public readonly tasks: Task[];
@@ -21,9 +23,13 @@ export class TaskGraph {
         throw new Error(`Duplicate task (id: ${taskData.taskId})`);
       }
 
-      let task = new Task(taskData);
+      let isRoot = (taskData.taskId === data.rootTaskId);
+      let task = new Task(taskData, isRoot);
+
       this.tasksById[taskData.taskId] = task;
       this.tasks.push(task);
+
+      TaskGraph.NEXT_TASK_ID = Math.max(TaskGraph.NEXT_TASK_ID, task.taskId);
     }
 
     this.root = this.tasksById[data.rootTaskId];
@@ -43,7 +49,7 @@ export class TaskGraph {
 
   public createSubTask(parentTaskId: number): Task {
     let parentTask = this.tasksById[parentTaskId];
-    let task = Task.createNewTask();
+    let task = TaskGraph.createNewTask();
 
     if (!parentTask) {
       throw new Error(`Invalid parentTaskId ${parentTaskId}`);
@@ -127,12 +133,22 @@ export class TaskGraph {
     if (storedTaskGraph) {
       return new TaskGraph(<ITaskGraph> JSON.parse(storedTaskGraph));
     } else {
-      let rootTask = Task.createNewTask();
+      let rootTask = TaskGraph.createNewTask();
 
       return new TaskGraph({
         rootTaskId: rootTask.taskId,
         tasks: [rootTask.getTaskData()]
       });
     }
+  }
+
+  private static createNewTask(): Task {
+    let nextTaskId = TaskGraph.NEXT_TASK_ID++;
+
+    return new Task({
+      taskId: nextTaskId,
+      taskName: `${TaskGraph.DEFAULT_TASK_NAME}: ${nextTaskId}`,
+      subTaskIds: []
+    });
   }
 }

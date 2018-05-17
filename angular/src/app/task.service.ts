@@ -91,11 +91,11 @@ export class TaskService {
     }
   }
 
-  public saveTaskGraph(): Observable<void> {
+  public saveTaskGraph(): Observable<TaskGraph> {
     try {
       this.taskGraph.saveTaskGraph();
 
-      return Observable.of();
+      return Observable.of(this.taskGraph);
     } catch (e) {
       return Observable.throw(e);
     }

@@ -23,41 +23,17 @@
     margin-top: 1px;
   }
 
-  .task-details-title-edit {
-    font-size: 20px;
-    margin-top: -20px;
-  }
-
   .task-btn {
     position: absolute;
     top: $task-details-icon-padding;
   }
 
-  .task-btn-icon {
-    font-size: 18px;
-  }
-
-  .task-edit-btn {
-    visibility: hidden;
-    right: $task-details-icon-padding;
-  }
-
   .task-delete-btn {
-    right: $task-details-icon-padding;
-  }
-
-  .task-cancel-btn {
     right: $task-btn-radius + (2 * $task-details-icon-padding);
   }
 
-  .task-submit-btn {
-    right: (2 * $task-btn-radius) + (3 * $task-details-icon-padding);
-  }
-
-  &:hover {
-    .task-edit-btn {
-      visibility: visible;
-    }
+  .task-edit-btn {
+    right: $task-details-icon-padding;
   }
 
   .task-details-content {
@@ -67,10 +43,5 @@
   .task-details-description {
     width: 100%;
     font-size: 20px;
-  }
-
-  .task-details-dates {
-    display: flex;
-    justify-content: space-between;
   }
 }
