@@ -24,15 +24,8 @@ export class TaskService {
   }
 
   public loadGraph(): Observable<TaskGraph> {
-    let storedTaskGraph = localStorage.getItem(TaskService.GRAPH_STORAGE_KEY);
-
-    // load from localStorage if present otherwise create from scratch
     try {
-      if (storedTaskGraph) {
-        this.taskGraph = new TaskGraph(<ITaskGraph> JSON.parse(storedTaskGraph));
-      } else {
-        this.taskGraph = new TaskGraph(this.generateTaskGraphData());
-      }
+      this.taskGraph = TaskGraph.loadTaskGraph();
 
       return Observable.of(this.taskGraph);
     } catch (e) {
@@ -55,96 +48,56 @@ export class TaskService {
   }
 
   public createNewTask(parentTaskId: number): Observable<Task> {
-    let parentTask = this.taskGraph.tasksById[parentTaskId];
+    try {
+      let createdTask = this.taskGraph.createSubTask(parentTaskId);
+      this.taskGraph.saveTaskGraph();
 
-    if (!parentTask) {
-      return Observable.throw(`Invalid parentTaskId ${parentTaskId}`);
+      return Observable.of(createdTask);
+    } catch (e) {
+      return Observable.throw(e);
     }
-
-    return Observable.of(new Task(this.generateTaskData()))
-      .pipe(mergeMap((newTask) => {
-        this.taskGraph.tasksById[newTask.taskId] = newTask;
-        this.taskGraph.tasks.push(newTask);
-
-        return this.linkTasks(parentTaskId, newTask.taskId);
-      }));
   }
 
   public deleteTask(taskId: number): Observable<Task> {
-    let task = this.taskGraph.tasksById[taskId];
-    let unlinkObservables: Observable<Task>[];
+    try {
+      let deletedTask = this.taskGraph.deleteTask(taskId);
+      this.taskGraph.saveTaskGraph();
 
-    if (!task) {
-      return Observable.throw(`Invalid taskId ${taskId}`);
-    }
-
-    // unlink children
-    for (let subTask of Array.from(task.subTasks.values())) {
-      unlinkObservables.push(this.unlinkTasks(taskId, subTask.taskId));
-    }
-
-    // unlink parents
-    for (let parentTask of Array.from(task.parentTasks.values())) {
-      unlinkObservables.push(this.unlinkTasks(parentTask.taskId, taskId))
-    }
-
-    return Observable.of(...unlinkObservables)
-      .pipe(mergeMap(() => {
-        delete this.taskGraph.tasksById[task.taskId];
-
-        let tasks = this.taskGraph.tasks;
-        tasks.splice(tasks.indexOf(task), 1);
-
-        return Observable.of(task);
-      }));
-  }
-
-  public linkTasks(parentTaskId: number, subTaskId: number): Observable<Task> {
-    let parentTask = this.taskGraph.tasksById[parentTaskId];
-    let subTask = this.taskGraph.tasksById[subTaskId];
-
-    // error if the tasks are already linked
-    for (let task of Array.from(parentTask.subTasks.values())) { // this is how you iterate a set yuck..
-      if (task.taskId === subTaskId) {
-        return Observable.throw(`task ${subTaskId} is already linked to ${parentTaskId}`);
-      }
-    }
-
-    parentTask.subTasks.add(subTask);
-    return Observable.of(subTask);
-  }
-
-  public unlinkTasks(parentTaskId: number, subTaskId: number): Observable<Task> {
-    let parentTask = this.taskGraph.tasksById[parentTaskId];
-    let subTask = this.taskGraph.tasksById[subTaskId];
-
-    if (!parentTask) {
-      return Observable.throw(`Invalid parentTaskId ${parentTaskId}`);
-    } else if (!subTask) {
-      return Observable.throw(`Invalid subTaskId ${subTaskId}`);
-    }
-
-    parentTask.subTasks.delete(subTask);
-    subTask.parentTasks.delete(parentTask);
-
-    return Observable.of(subTask);
-  }
-
-  private generateTaskData(): ITask {
-    return {
-      taskId: this.getNextTaskId(),
-      taskName: TaskService.DEFAULT_TASK_NAME,
-      subTaskIds: []
+      return Observable.of(deletedTask);
+    } catch (e) {
+      return Observable.throw(e);
     }
   }
 
-  private generateTaskGraphData(): ITaskGraph {
-    let rootTask = this.generateTaskData();
+  public linkTasks(parentTaskId: number, subTaskId: number): Observable<void> {
+    try {
+      this.taskGraph.linkTasks(parentTaskId, subTaskId);
+      this.taskGraph.saveTaskGraph();
 
-    return {rootTaskId: rootTask.taskId, tasks: [rootTask]};
+      return Observable.of();
+    } catch (e) {
+      return Observable.throw(e);
+    }
   }
 
-  private getNextTaskId() {
-    return this.autoIncrementTaskId++;
+  public unlinkTasks(parentTaskId: number, subTaskId: number): Observable<void> {
+    try {
+      this.taskGraph.unlinkTasks(parentTaskId, subTaskId);
+      this.taskGraph.saveTaskGraph();
+
+      return Observable.of();
+    } catch (e) {
+      return Observable.throw(e);
+    }
+  }
+
+  public saveTaskGraph(): Observable<void> {
+    try {
+      this.taskGraph.saveTaskGraph();
+
+      return Observable.of();
+    } catch (e) {
+      return Observable.throw(e);
+    }
   }
 }

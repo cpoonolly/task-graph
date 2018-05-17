@@ -8,6 +8,9 @@ export interface ITask {
 }
 
 export class Task {
+  private static readonly DEFAULT_TASK_NAME = "My New Task";
+  private static LAST_TASK_ID = 1;
+
   public readonly taskId: number;
   public taskName: string;
   public description?: string;
@@ -26,5 +29,28 @@ export class Task {
     this.subTasks = new Set<Task>();
     this.parentTasks = new Set<Task>();
     // this.fields = []; Not using this now
+  }
+
+  public getTaskData(): ITask {
+    return {
+      taskId: this.taskId,
+      taskName: this.taskName,
+      description: this.description,
+      startDate: this.startDate,
+      endDate: this.endDate,
+      subTaskIds: Array.from(this.subTasks.values()).map((task) => task.taskId)
+    };
+  }
+
+  public static createNewTask(): Task {
+    return new Task({
+      taskId: Task.getNextTaskId(),
+      taskName: Task.DEFAULT_TASK_NAME,
+      subTaskIds: []
+    });
+  }
+
+  private static getNextTaskId(): number {
+    return Task.LAST_TASK_ID++;
   }
 }
