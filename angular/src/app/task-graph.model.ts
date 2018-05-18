@@ -32,6 +32,8 @@ export class TaskGraph {
       TaskGraph.NEXT_TASK_ID = Math.max(TaskGraph.NEXT_TASK_ID, task.taskId);
     }
 
+    TaskGraph.NEXT_TASK_ID++;
+
     this.root = this.tasksById[data.rootTaskId];
     if (!this.root) {
       throw new Error(`Invalid rootTask (id:${data.rootTaskId})`);
