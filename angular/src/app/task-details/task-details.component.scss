@@ -6,6 +6,12 @@
   $task-details-height: $content-viewport-item-height;
 
   min-height: $task-details-height;
+  display: flex;
+  flex-direction: column;
+
+  .task-details-card {
+    flex-grow: 1;
+  }
 
   .task-details-header {
     display: flex;

@@ -11,6 +11,7 @@ export class TaskSubitemsViewComponent implements OnInit {
   @Input() task: Task;
 
   subTasks: Task[];
+  parentTasks: Task[];
   isFilterOpen: boolean;
 
   constructor(
@@ -20,11 +21,13 @@ export class TaskSubitemsViewComponent implements OnInit {
   ngOnInit() {
     this.isFilterOpen = false;
     this.subTasks = Array.from(this.task.subTasks.values());
+    this.parentTasks = Array.from(this.task.parentTasks.values());
   }
 
   ngOnChanges(changes: SimpleChanges) {
     this.task = changes.task.currentValue;
     this.subTasks = Array.from(this.task.subTasks.values());
+    this.parentTasks = Array.from(this.task.parentTasks.values());
   }
 
   toggleFilters() {

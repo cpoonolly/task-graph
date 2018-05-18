@@ -2,19 +2,22 @@
 
 .task-subitems-view {
   $task-subitems-view: $content-viewport-item-height;
+  height: $task-subitems-view;
+  display: flex;
+  flex-direction: column;
 
-  min-height: $task-subitems-view;
-
-  .task-subitems-view-header {
-    margin-bottom: 20px;
+  .task-parent-items,
+  .task-subitems-buttons {
+    flex-basis: auto;
   }
 
-  .task-subitems-list {
-    // padding-top: 20px;
-  }
-
-  .task-filter-header {
+  .task-child-items {
+    flex-grow: 1;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+  }
+
+  .task-child-items-content {
+    overflow-y: auto;
   }
 }

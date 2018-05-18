@@ -1,20 +1,34 @@
-<mat-card class="task-subitems-view">
-  <!-- No need for filters for now -->
-  <!-- <mat-card-header>
-    <div class="task-subitems-view-header">
-      <button mat-button (click)="toggleFilters()">Filters</button>
-      <tasks-filters [isFilterOpen]="isFilterOpen"></tasks-filters>
-    </div>
-  </mat-card-header> -->
-  <mat-card-content>
-    <!-- <mat-divider></mat-divider> -->
-    <mat-nav-list class="task-subitems-list">
-      <h3 mat-subheader>Sub Tasks</h3>
-      <mat-list-item *ngFor="let subTask of subTasks" routerLink="/task/{{subTask.taskId}}">
-        <task-bobble mat-list-icon [task]="subTask"></task-bobble>
-        <h4 mat-line>{{subTask.taskName}}</h4>
-      </mat-list-item>
-    </mat-nav-list>
-    <button mat-button (click)="addSubTask()">Add Sub Task</button>
-  </mat-card-content>
-</mat-card>
+<div class="task-subitems-view">
+  <!-- Parent Task List -->
+  <mat-card class="task-parent-items" *ngIf="!task.isRoot">
+    <mat-card-title>
+      Parent Task
+    </mat-card-title>
+    <mat-card-content class="task-parent-items-content">
+      <mat-nav-list>
+        <mat-list-item *ngFor="let parentTask of parentTasks" routerLink="/task/{{parentTask.taskId}}">
+          <task-bobble mat-list-icon [task]="parentTask"></task-bobble>
+          <h4 mat-line>{{parentTask.taskName}}</h4>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-card-content>
+  </mat-card>
+  <!-- Child Task List -->
+  <mat-card class="task-child-items">
+    <mat-card-title>
+      Sub Tasks
+    </mat-card-title>
+    <mat-card-content class="task-child-items-content">
+      <mat-nav-list>
+        <mat-list-item *ngFor="let subTask of subTasks" routerLink="/task/{{subTask.taskId}}">
+          <task-bobble mat-list-icon [task]="subTask"></task-bobble>
+          <h4 mat-line>{{subTask.taskName}}</h4>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-card-content>
+  </mat-card>
+  <!-- Task Options -->
+  <mat-card class="task-subitems-buttons">
+    <button mat-raised-button color="accent" (click)="addSubTask()">Add Sub Task</button>
+  </mat-card>
+</div>

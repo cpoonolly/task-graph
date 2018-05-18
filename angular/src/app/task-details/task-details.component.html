@@ -1,32 +1,34 @@
-<mat-card class="task-details">
-  <mat-card-header class="task-details-header">
-    <!-- Avatar -->
-    <task-bobble [task]="task" class="task-details-bobble"></task-bobble>
+<div class="task-details">
+  <mat-card class="task-details-card">
+    <mat-card-header class="task-details-header">
+      <!-- Avatar -->
+      <task-bobble [task]="task" class="task-details-bobble"></task-bobble>
 
-    <!-- Title -->
-    <h3 class="task-details-title">
-      {{task.taskName}}
-    </h3>
+      <!-- Title -->
+      <h3 class="task-details-title">
+        {{task.taskName}}
+      </h3>
 
-    <!-- Buttons -->
-    <button mat-mini-fab
-      class="task-btn task-edit-btn"
-      color="accent"
-      (click)="openEditModal()"
-    >
-      <mat-icon>edit</mat-icon>
-    </button>
-    <button mat-mini-fab
-      class="task-btn task-delete-btn"
-      color="accent"
-      *ngIf="!task.isRoot"
-    >
-      <mat-icon>delete</mat-icon>
-    </button>
-  </mat-card-header>
+      <!-- Buttons -->
+      <button mat-mini-fab
+        class="task-btn task-edit-btn"
+        color="accent"
+        (click)="openEditModal()"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-mini-fab
+        class="task-btn task-delete-btn"
+        color="accent"
+        *ngIf="!task.isRoot"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-header>
 
-  <!-- Content -->
-  <mat-card-content class="task-details-content task-details-content-edit">
-    <markdown [data]="taskMarkdown"></markdown>
-  </mat-card-content>
-</mat-card>
+    <!-- Content -->
+    <mat-card-content class="task-details-content task-details-content-edit">
+      <markdown [data]="taskMarkdown"></markdown>
+    </mat-card-content>
+  </mat-card>
+</div>
