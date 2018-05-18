@@ -4,6 +4,8 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Task } from '../task.model';
 import { TaskService } from '../task.service';
 import { TaskEditModalComponent } from '../task-edit-modal/task-edit-modal.component';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'task-details',
@@ -17,7 +19,10 @@ export class TaskDetailsComponent implements OnInit {
   taskMarkdown: string;
 
   constructor(
-    public dialog: MatDialog
+    private router: Router,
+    private taskService: TaskService,
+    private dialog: MatDialog,
+    public snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {}
@@ -42,5 +47,15 @@ export class TaskDetailsComponent implements OnInit {
       this.editModalRef = null;
       this.taskMarkdown = (this.task.description ? this.task.description : '');
     });
+  }
+
+  deleteTask() {
+    let parentTask = this.task.parentTasks.values().next().value; // Sets in typescript are the fucking worst...
+
+    this.taskService.deleteTask(this.task.taskId)
+      .subscribe(() => {
+        this.router.navigate(['task', parentTask.taskId]);
+        this.snackBar.open('Task Deleted', '', {duration: 1000});
+      });
   }
 }

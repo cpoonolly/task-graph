@@ -20,6 +20,7 @@
       <button mat-mini-fab
         class="task-btn task-delete-btn"
         color="accent"
+        (click)="deleteTask()"
         *ngIf="!task.isRoot"
       >
         <mat-icon>delete</mat-icon>

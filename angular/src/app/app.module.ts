@@ -15,6 +15,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MarkdownModule } from 'ngx-md';
@@ -69,6 +70,7 @@ import { TaskSearchFilterPipe } from './task-graph-side-nav/task-search-filter.p
     MatToolbarModule,
     MatSelectModule,
     MatSidenavModule,
+    MatSnackBarModule,
     MarkdownModule.forRoot(),
     AppRoutingModule
   ],
