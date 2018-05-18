@@ -12,7 +12,7 @@ export class TaskGraphSideNavComponent implements OnInit {
   @Input() taskGraph: TaskGraph;
 
   public taskList: Task[];
-  public searchQuery: string;
+  public taskSearchQuery: string;
 
   constructor() { }
 

@@ -1,5 +1,5 @@
 <mat-form-field class="task-graph-search-box" [floatLabel]="'never'">
-  <input matInput type="search" placeholder="Search" [(ngModel)]="searchQuery"/>
+  <input matInput type="search" placeholder="Search" [(ngModel)]="searchQuery" (ngModelChange)="onSearchChange()"/>
   <span matPrefix class="task-graph-search-box-icon">
     <mat-icon>search</mat-icon>
   </span>

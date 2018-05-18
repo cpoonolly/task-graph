@@ -7,9 +7,14 @@ import { Component, OnInit, Output, EventEmitter, Input, SimpleChanges } from '@
 })
 export class TaskGraphSearchBoxComponent implements OnInit {
   @Input('searchQuery') searchQuery: string;
+  @Output('searchQueryChange') searchQueryChange = new EventEmitter<string>();
 
   public search: string;
 
   constructor() { }
   ngOnInit() { }
+
+  onSearchChange() {
+    this.searchQueryChange.emit(this.searchQuery);
+  }
 }

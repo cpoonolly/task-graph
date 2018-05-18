@@ -1,9 +1,9 @@
 <div class="task-graph-side-nav">
-  <task-graph-search-box #taskSearchBox class="side-nav-searchbox"></task-graph-search-box>
+  <task-graph-search-box [(searchQuery)]="taskSearchQuery" class="side-nav-searchbox"></task-graph-search-box>
   <mat-nav-list>
     <h2 matSubheader>Tasks</h2>
     <mat-list-item
-      *ngFor="let task of (taskList | taskSearch: taskSearchBox.searchQuery)"
+      *ngFor="let task of (taskList | taskSearch: taskSearchQuery)"
       routerLink="/task/{{task.taskId}}"
     >
       <div class="task-list-item" matLine>
