@@ -14,6 +14,7 @@ export class TaskDetailsComponent implements OnInit {
   @Input() task: Task;
 
   editModalRef: MatDialogRef<TaskEditModalComponent> = null;
+  taskMarkdown: string;
 
   constructor(
     public dialog: MatDialog
@@ -23,6 +24,7 @@ export class TaskDetailsComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
     this.task = changes.task.currentValue;
+    this.taskMarkdown = (this.task.description ? this.task.description : '');
   }
 
   openEditModal() {
@@ -36,6 +38,9 @@ export class TaskDetailsComponent implements OnInit {
       data: {taskId: this.task.taskId}
     });
 
-    this.editModalRef.afterClosed().subscribe(() => this.editModalRef = null);
+    this.editModalRef.afterClosed().subscribe(() => {
+      this.editModalRef = null;
+      this.taskMarkdown = (this.task.description ? this.task.description : '');
+    });
   }
 }
