@@ -31,6 +31,7 @@ import { TaskGraphSearchBoxComponent } from './task-graph-search-box/task-graph-
 import { TaskService } from './task.service';
 import { AppRoutingModule } from './/app-routing.module';
 import { TaskEditModalComponent } from './task-edit-modal/task-edit-modal.component';
+import { TaskSearchFilterPipe } from './task-graph-side-nav/task-search-filter.pipe';
 // import { TaskFieldEditComponent } from './task-field-edit/task-field-edit.component';
 
 @NgModule({
@@ -44,7 +45,8 @@ import { TaskEditModalComponent } from './task-edit-modal/task-edit-modal.compon
     TaskSubitemsViewComponent,
     TasksFiltersComponent,
     TaskGraphSearchBoxComponent,
-    TaskEditModalComponent
+    TaskEditModalComponent,
+    TaskSearchFilterPipe
     // TaskFieldEditComponent
   ],
   imports: [

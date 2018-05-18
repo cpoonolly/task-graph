@@ -12,8 +12,10 @@ export class TaskGraphSideNavComponent implements OnInit {
   @Input() taskGraph: TaskGraph;
 
   public taskList: Task[];
+  public searchQuery: string;
 
   constructor() { }
+
   ngOnInit() {
     this.taskList = this.taskGraph.tasks;
   }

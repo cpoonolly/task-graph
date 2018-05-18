@@ -1,9 +1,11 @@
 <div class="task-graph-side-nav">
-  <task-graph-search-box class="side-nav-searchbox"></task-graph-search-box>
+  <task-graph-search-box #taskSearchBox class="side-nav-searchbox"></task-graph-search-box>
   <mat-nav-list>
     <h2 matSubheader>Tasks</h2>
-    <!-- <mat-divider></mat-divider> -->
-    <mat-list-item *ngFor="let task of taskList" routerLink="/task/{{task.taskId}}">
+    <mat-list-item
+      *ngFor="let task of (taskList | taskSearch: taskSearchBox.searchQuery)"
+      routerLink="/task/{{task.taskId}}"
+    >
       <div class="task-list-item" matLine>
         <task-bobble [task]="task" class="task-list-item-bobble"></task-bobble>
         <span class="task-list-item-name">{{task.taskName}}</span>
