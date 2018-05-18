@@ -116,6 +116,7 @@ export class TaskGraph {
     }
 
     parentTask.subTasks.add(subTask);
+    subTask.parentTasks.add(parentTask);
   }
 
   public saveTaskGraph(): void {
