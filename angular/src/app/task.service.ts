@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { TaskGraph, ITaskGraph } from './task-graph.model';
 import { Task, ITask } from './task.model';
 import { Observable } from 'rxjs/Observable';
-import { forkJoin } from 'rxjs/observable/forkJoin';
-import { mergeMap } from 'rxjs/operators';
+import 'rxjs/add/observable/throw'; // WTF...
 
 @Injectable()
 export class TaskService {
