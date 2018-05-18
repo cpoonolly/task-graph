@@ -27,7 +27,6 @@ import { TaskBobbleComponent } from './task-bobble/task-bobble.component';
 import { TaskViewComponent } from './task-view/task-view.component';
 import { TaskDetailsComponent } from './task-details/task-details.component';
 import { TaskSubitemsViewComponent } from './task-subitems-view/task-subitems-view.component';
-import { TasksFiltersComponent } from './tasks-filters/tasks-filters.component';
 import { TaskGraphSearchBoxComponent } from './task-graph-search-box/task-graph-search-box.component';
 import { TaskService } from './task.service';
 import { AppRoutingModule } from './/app-routing.module';
@@ -44,7 +43,6 @@ import { TaskSearchFilterPipe } from './task-graph-side-nav/task-search-filter.p
     TaskViewComponent,
     TaskDetailsComponent,
     TaskSubitemsViewComponent,
-    TasksFiltersComponent,
     TaskGraphSearchBoxComponent,
     TaskEditModalComponent,
     TaskSearchFilterPipe
