@@ -70,8 +70,13 @@ export class TaskGraph {
       throw new Error(`Invalid taskId ${taskId}`);
     }
 
+    // Array.from(task.subTasks.values()).forEach((subTask) => {
+    //   this.unlinkTasks(taskId, subTask.taskId); // unlink children
+    // });
+
+    // For now our graph is more of a tree so we need to delete children
     Array.from(task.subTasks.values()).forEach((subTask) => {
-      this.unlinkTasks(taskId, subTask.taskId); // unlink children
+      this.deleteTask(subTask.taskId);
     });
 
     Array.from(task.parentTasks.values()).forEach((parentTask) => {

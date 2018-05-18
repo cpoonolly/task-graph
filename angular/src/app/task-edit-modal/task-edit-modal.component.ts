@@ -10,12 +10,13 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./task-edit-modal.component.scss']
 })
 export class TaskEditModalComponent implements OnInit {
+  public readonly descriptionTextAreaRows = 10;
+
   taskId: number;
   task: Task;
   taskEditForm: FormGroup;
   taskStartDateControl: FormControl;
   taskEndDateControl: FormControl
-  descriptionMinRows = 5;
 
   constructor(
     private taskService: TaskService,

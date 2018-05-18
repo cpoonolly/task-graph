@@ -5,20 +5,18 @@
   $task-details-icon-padding: 10px;
   $task-details-height: $content-viewport-item-height;
 
-  min-height: $task-details-height;
+  height: $task-details-height;
   display: flex;
   flex-direction: column;
 
-  .task-details-card {
-    flex-grow: 1;
+  .task-details-header {
+    flex-basis: 80px;
+    display: flex;
   }
 
-  .task-details-header {
-    display: flex;
-
-    ::ng-deep > .mat-card-header-text:first-child {
-      margin: 0px;
-    }
+  .task-details-content {
+    flex-grow: 1;
+    overflow-y: auto;
   }
 
   .task-details-bobble {
@@ -40,14 +38,5 @@
 
   .task-edit-btn {
     right: $task-details-icon-padding;
-  }
-
-  .task-details-content {
-    padding-top: 25px;
-  }
-
-  .task-details-description {
-    width: 100%;
-    font-size: 20px;
   }
 }

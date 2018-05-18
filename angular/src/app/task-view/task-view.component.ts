@@ -30,6 +30,7 @@ export class TaskViewComponent implements OnInit {
       })
       .subscribe((task) => {
         this.task = task;
+        this.router.navigate(['task', task.taskId], {skipLocationChange: true});
       });
   }
 }

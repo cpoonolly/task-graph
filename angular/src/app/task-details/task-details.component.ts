@@ -54,8 +54,13 @@ export class TaskDetailsComponent implements OnInit {
 
     this.taskService.deleteTask(this.task.taskId)
       .subscribe(() => {
-        this.router.navigate(['task', parentTask.taskId]);
         this.snackBar.open('Task Deleted', '', {duration: 1000});
+
+        if (parentTask) {
+          this.router.navigate(['task', parentTask.taskId]);
+        } else {
+          this.router.navigate(['']);
+        }
       });
   }
 }

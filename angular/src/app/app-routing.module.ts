@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TaskViewComponent } from './task-view/task-view.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'task/', pathMatch: 'full' },
+  { path: '', redirectTo: 'task/1', pathMatch: 'full' },
   { path: 'task/:taskId', component: TaskViewComponent },
 ];
 

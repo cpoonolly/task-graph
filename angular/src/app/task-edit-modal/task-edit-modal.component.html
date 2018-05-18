@@ -1,19 +1,18 @@
-<h2 mat-dialog-title>Edit Task</h2>
-<form [formGroup]="taskEditForm">
-  <div mat-dialog-content>
-    <mat-form-field class="task-details-title-edit" [floatLabel]="'never'">
+<form [formGroup]="taskEditForm" class="task-edit-modal">
+  <div mat-dialog-content class="task-edit-modal-content">
+    <mat-form-field [floatLabel]="'never'" class="task-edit-name">
       <input matInput formControlName="name">
     </mat-form-field>
-    <div class="task-details-content task-details-content-edit">
-      <mat-form-field class="task-details-description">
-        <textarea formControlName="description" matInput matTextareaAutosize
-          matAutosizeMinRows="{{descriptionMinRows}}"
-          placeholder="Add a description"
-        ></textarea>
-      </mat-form-field>
-    </div>
+    <mat-form-field class="task-edit-description">
+      <textarea matInput matTextareaAutosize
+        formControlName="description"
+        matAutosizeMaxRows="{{descriptionTextAreaRows}}"
+        matAutosizeMinRows="{{descriptionTextAreaRows}}"
+        placeholder="Add a description"
+      ></textarea>
+    </mat-form-field>
   </div>
-  <div mat-dialog-actions>
+  <div mat-dialog-actions class="task-edit-buttons">
     <button mat-raised-button color="accent" (click)="cancelChanges()">Cancel</button>
     <button mat-raised-button color="accent" (click)="saveChanges()">Save</button>
   </div>
