@@ -3,13 +3,11 @@
   <mat-nav-list>
     <h2 matSubheader>Tasks</h2>
     <!-- <mat-divider></mat-divider> -->
-    <mat-list-item *ngFor="let task of taskList">
-      <a routerLink="/task/{{task.taskId}}">
-        <div class="task-list-item" matLine>
-          <task-bobble [task]="task" class="task-list-item-bobble"></task-bobble>
-          <span class="task-list-item-name">{{task.taskName}}</span>
-        </div>
-      </a>
+    <mat-list-item *ngFor="let task of taskList" routerLink="/task/{{task.taskId}}">
+      <div class="task-list-item" matLine>
+        <task-bobble [task]="task" class="task-list-item-bobble"></task-bobble>
+        <span class="task-list-item-name">{{task.taskName}}</span>
+      </div>
     </mat-list-item>
   </mat-nav-list>
 </div>
